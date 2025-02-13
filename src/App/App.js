@@ -12,19 +12,21 @@ function App() {
   const [movies, setMovies] = useState(moviePosters);
 
   function upVote(id) {
-    setMovies(movies => movies.map((movie) =>
-      movie.id === id ? {...movie, vote_count: movie.vote_count + 1}
-      :movie
-      )
-    )
+    setMovies(movies => movies.map((movie) => {
+      if (movie.id === id) {
+        return {...movie, vote_count: movie.vote_count + 1}
+      }
+      return movie
+    }))
   }
 
   function downVote(id) {
-    setMovies(movies => movies.map((movie) => 
-      movie.id === id ? {...movie, vote_count: movie.vote_count - 1 }
-      :movie
-      )
-    )
+    setMovies(movies => movies.map((movie) => { 
+      if (movie.id === id) {
+        return {...movie, vote_count: movie.vote_count + 1}
+      }
+      return movie
+    }))
   }
   
   return (
