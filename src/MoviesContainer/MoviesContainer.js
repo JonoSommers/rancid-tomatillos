@@ -1,12 +1,13 @@
 import './MoviesContainer.css';
 import MoviePoster from '../MoviePoster/MoviePoster.js';
 
-function Movies( {movies} ) {
-  const movieCards = movies.map(movie => {
+function MoviesContainer( {movies, onClick} ) {
+  const movieCards = movies.map((movie) => {
     return (
       < MoviePoster 
           poster_path = { movie.poster_path } 
           vote_count = { movie.vote_count } 
+          onClick= { onClick }
       />
     )
   })
@@ -18,4 +19,4 @@ function Movies( {movies} ) {
   );
 }
   
-export default Movies;
+export default MoviesContainer;
