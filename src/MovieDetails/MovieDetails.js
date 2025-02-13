@@ -1,9 +1,16 @@
 import './MovieDetails.css';
 
-function MovieDetails() {
+function MovieDetails({ movie }) {
   return (
     <section className='MovieDetails'>
-      <p>Movie Details go here!</p>
+      <img src= { movie.backdrop_path } alt={ movie.title }/>
+      <h1>{ movie.title }</h1>
+      <div className="genres">
+        {movie.genre_ids.map((genre, index) => (
+          <h2 key={index}>{ genre }</h2>
+      ))}
+      </div>
+      <p>{ movie.overview } </p>
     </section>
   );
 }

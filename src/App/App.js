@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import searchIcon from '../icons/search.png';
+import homeIcon from '../icons/home.png';
 import moviePosters from '../data/movie_posters';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import movieDetails from '../data/movie_details';
@@ -19,6 +20,7 @@ function App() {
       <main className='App'>
         <header>
           <h1>Rancid Tomatillos</h1>
+          <img className="homeIcon" src={homeIcon} alt="Back to home" onClick={ () => setClickedMovie(false) }></img>
         </header>
         <MovieDetails movie={clickedMovie} />
       </main>

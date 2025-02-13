@@ -1,0 +1,44 @@
+.MovieDetails{
+  text-align: center;
+  background-color: white;
+  height: 70%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  margin: 0px 100px;
+}
+
+.MovieDetails img {
+  width: 100%;
+  height: 70%;
+  align-items: center;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.MovieDetails h1 {
+  padding: 20px;
+  color: purple;
+  font-size: 30px;
+}
+
+.genres {
+  padding: 5px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 5px;
+}
+
+.MovieDetails h2 {
+  background-color: skyblue;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.MovieDetails p {
+  font-size: 20px;
+  padding: 15px;
+  margin: 0;
+}
