@@ -26,3 +26,8 @@ p {
   margin-top: 50px;
   color: white;
 }
+
+.homeIcon {
+  width: 70px;
+  cursor: pointer;
+}
