@@ -13,7 +13,6 @@ function App() {
   const handleClick = () => {
     setClickedMovie(movieDetails)
   }
-  debugger;
 
   if (clickedMovie) {
     return (
