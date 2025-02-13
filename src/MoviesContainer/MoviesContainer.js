@@ -1,9 +1,19 @@
 import './MoviesContainer.css';
+import MoviePoster from '../MoviePoster/MoviePoster.js';
 
-function Movies() {
+function Movies( {movies} ) {
+  const movieCards = movies.map(movie => {
+    return (
+      < MoviePoster 
+          poster_path = { movie.poster_path } 
+          vote_count = { movie.vote_count } 
+      />
+    )
+  })
+
   return (
       <section className='MoviesContainer'>
-        <p>We'll make some movie posters show up here!</p>
+        { movieCards }
       </section>
   );
 }
