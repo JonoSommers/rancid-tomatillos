@@ -13,7 +13,7 @@ function App() {
 
   function upVote(id) {
     setMovies(movies => movies.map((movie) =>
-      movie.id === id ? {...movie, vote_count: movie.vote_count += 1}
+      movie.id === id ? {...movie, vote_count: movie.vote_count + 1}
       :movie
       )
     )
@@ -21,7 +21,7 @@ function App() {
 
   function downVote(id) {
     setMovies(movies => movies.map((movie) => 
-      movie.id === id ? {...movies, vote_count: movie.vote_count -= 1 }
+      movie.id === id ? {...movie, vote_count: movie.vote_count - 1 }
       :movie
       )
     )

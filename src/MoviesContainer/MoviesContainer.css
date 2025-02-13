@@ -25,3 +25,10 @@
   margin: 10px;
   border-radius: 10px;
 }
+
+button {
+  border: none;
+  box-shadow: white;
+  background-color: transparent;
+  
+}
