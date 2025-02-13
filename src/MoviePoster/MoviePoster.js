@@ -4,7 +4,7 @@ import './MoviePoster.css';
 function MoviePoster({poster_path, vote_count}) {
   return (
     <section className='MoviePoster'>
-      <h3>{ poster_path }</h3>
+      <img src= { poster_path } alt= "Movie Poster"/>
       <p>{ vote_count }</p>
     </section>
   );

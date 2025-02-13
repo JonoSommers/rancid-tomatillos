@@ -1,0 +1,26 @@
+.MoviesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 60px;
+}
+
+.MoviePoster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px; 
+  height: 420px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.MoviePoster img {
+  width: 100%; 
+  border-radius: 10px 10px 0px 0px;
+}
+
+.MoviePoster p {
+  margin: 10px;
+  border-radius: 10px; 
+}
