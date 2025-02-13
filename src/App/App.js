@@ -15,6 +15,24 @@ function App() {
     setClickedMovie(movieDetails)
   }
 
+  function upVote(id) {
+    setMovies(movies => movies.map((movie) => {
+      if (movie.id === id) {
+        return {...movie, vote_count: movie.vote_count + 1}
+      }
+      return movie
+    }))
+  }
+
+  function downVote(id) {
+    setMovies(movies => movies.map((movie) => { 
+      if (movie.id === id) {
+        return {...movie, vote_count: movie.vote_count + 1}
+      }
+      return movie
+    }))
+  }
+
   if (clickedMovie) {
     return (
       <main className='App'>
@@ -31,7 +49,7 @@ function App() {
         <header>
           <h1>Rancid Tomatillos</h1>
         </header>
-        <MoviesContainer movies = { movies } onClick={handleClick}/>
+        <MoviesContainer movies = { movies } onClick={handleClick} upVote={ upVote } downVote={ downVote } />
       </main>
     );
   }
