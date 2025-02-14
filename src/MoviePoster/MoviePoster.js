@@ -1,6 +1,6 @@
 import './MoviePoster.css';
 
-function MoviePoster({poster_path, vote_count, handleClick}) {
+function MoviePoster({poster_path, vote_count, id, upVote, downVote, handleClick}) {
   return (
     <section className='MoviePoster'>
       <img src= { poster_path } alt= "Movie Poster" onClick={handleClick}/>

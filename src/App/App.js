@@ -3,9 +3,11 @@ import './App.css';
 import searchIcon from '../icons/search.png';
 import homeIcon from '../icons/home.png';
 import moviePosters from '../data/movie_posters';
+
 import movieDetails from '../data/movie_details';
 import MoviesContainer from '../MoviesContainer/MoviesContainer.js';
 import MovieDetails from '../MovieDetails/MovieDetails.js';
+
 
 function App() {
   const [movies, setMovies] = useState(moviePosters);
@@ -32,14 +34,13 @@ function App() {
       return movie
     }))
   }
-  
-  
+
   if (clickedMovie) {
     return (
       <main className='App'>
         <header>
           <h1>Rancid Tomatillos</h1>
-          <img className="homeIcon" src={homeIcon} alt="Back to home" onClick={() => setClickedMovie(null)} />
+          <img className="homeIcon" src={homeIcon} alt="Back to home" onClick={ () => setClickedMovie(false) }></img>
         </header>
         <MovieDetails movie={clickedMovie} />
       </main>
@@ -50,7 +51,7 @@ function App() {
         <header>
           <h1>Rancid Tomatillos</h1>
         </header>
-        <MoviesContainer movies = { movies } upVote={ upVote } downVote={ downVote } />
+        <MoviesContainer movies = { movies } onClick={handleClick} upVote={ upVote } downVote={ downVote } />
       </main>
     );
   }
