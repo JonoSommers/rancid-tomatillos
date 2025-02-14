@@ -25,7 +25,7 @@ function App() {
     }))
   }
   
-   function downVote(id) {
+  function downVote(id) {
     setMovies(movies => movies.map((movie) => { 
       if (movie.id === id) {
         return {...movie, vote_count: movie.vote_count - 1}
