@@ -1,19 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 // import searchIcon from '../icons/search.png';
 import homeIcon from '../icons/home.png';
-import moviePosters from '../data/movie_posters';
-import movieDetails from '../data/movie_details';
 import MoviesContainer from '../MoviesContainer/MoviesContainer.js';
 import MovieDetails from '../MovieDetails/MovieDetails.js';
 
 
 function App() {
-  const [movies, setMovies] = useState(moviePosters);
+  const [movies, setMovies] = useState([]);
   const [clickedMovie, setClickedMovie] = useState(false);
 
+  function getMovies() {
+    fetch("https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies")
+    .then(response => response.json())
+    .then(data => {
+      setMovies([...data])
+    })
+    .catch(error => console.log('error message: ', error.message))
+  }
+
+  useEffect(() => {
+    getMovies();
+  }, [])
+
   const handleClick = () => {
-    setClickedMovie(movieDetails)
+    setClickedMovie(movies)
   }
 
   function upVote(id) {
