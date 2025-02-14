@@ -28,12 +28,19 @@ function App() {
   }
 
   function upVote(id) {
-    setMovies(movies => movies.map((movie) => {
-      if (movie.id === id) {
-        return {...movie, vote_count: movie.vote_count + 1}
-      }
+    fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({vote_direction: 'up'})
+    })
+    .then(response => response.json())
+    .then(movie => {
+      setMovies(movie)
       return movie
-    }))
+    })
+    .catch(error => console.log('error message: ', error.message))
   }
   
   function downVote(id) {
