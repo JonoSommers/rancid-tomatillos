@@ -3,7 +3,6 @@ import './App.css';
 import searchIcon from '../icons/search.png';
 import homeIcon from '../icons/home.png';
 import moviePosters from '../data/movie_posters';
-
 import movieDetails from '../data/movie_details';
 import MoviesContainer from '../MoviesContainer/MoviesContainer.js';
 import MovieDetails from '../MovieDetails/MovieDetails.js';
@@ -29,7 +28,7 @@ function App() {
    function downVote(id) {
     setMovies(movies => movies.map((movie) => { 
       if (movie.id === id) {
-        return {...movie, vote_count: movie.vote_count + 1}
+        return {...movie, vote_count: movie.vote_count - 1}
       }
       return movie
     }))
@@ -51,7 +50,7 @@ function App() {
         <header>
           <h1>Rancid Tomatillos</h1>
         </header>
-        <MoviesContainer movies = { movies } onClick={handleClick} upVote={ upVote } downVote={ downVote } />
+        <MoviesContainer movies = { movies } onClick={ handleClick } upVote={ upVote } downVote={ downVote } />
       </main>
     );
   }
