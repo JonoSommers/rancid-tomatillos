@@ -1,7 +1,8 @@
 import './MoviesContainer.css';
 import MoviePoster from '../MoviePoster/MoviePoster.js';
 
-function MoviesContainer( {movies, upVote, downVote, onClick}) {
+function Movies( {movies, upVote, downVote, handleClick} ) {
+
   const movieCards = movies.map(movie => {
     return (
       < MoviePoster 
@@ -11,7 +12,7 @@ function MoviesContainer( {movies, upVote, downVote, onClick}) {
           key={movie.id}
           upVote = { upVote }
           downVote= { downVote }
-          onClick = { onClick }
+          onClick= { handleClick }
       />
     )
   })
@@ -23,4 +24,6 @@ function MoviesContainer( {movies, upVote, downVote, onClick}) {
   );
 }
   
+
 export default MoviesContainer;
+

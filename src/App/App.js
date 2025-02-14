@@ -3,9 +3,11 @@ import './App.css';
 import searchIcon from '../icons/search.png';
 import homeIcon from '../icons/home.png';
 import moviePosters from '../data/movie_posters';
-import MoviesContainer from '../MoviesContainer/MoviesContainer';
+
 import movieDetails from '../data/movie_details';
-import MovieDetails from '../MovieDetails/MovieDetails';
+import MoviesContainer from '../MoviesContainer/MoviesContainer.js';
+import MovieDetails from '../MovieDetails/MovieDetails.js';
+
 
 function App() {
   const [movies, setMovies] = useState(moviePosters);
@@ -23,8 +25,8 @@ function App() {
       return movie
     }))
   }
-
-  function downVote(id) {
+  
+   function downVote(id) {
     setMovies(movies => movies.map((movie) => { 
       if (movie.id === id) {
         return {...movie, vote_count: movie.vote_count + 1}
