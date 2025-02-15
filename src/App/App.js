@@ -28,16 +28,23 @@ function App() {
   }
 
   function upVote(id) {
+    const requestBody = { vote_direction: 'up' };
+
     fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({vote_direction: 'up'})
+      body: JSON.stringify(requestBody)
     })
     .then(response => response.json())
     .then(movie => {
-      setMovies(movie)
+      setMovies(movies => movies.map((m) => {
+        if (m.id === id) {
+          return {...m, vote_count: m.vote_count + 1}
+        }
+        return m
+      }))
       return movie
     })
     .catch(error => console.log('error message: ', error.message))
