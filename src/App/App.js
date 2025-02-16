@@ -28,35 +28,47 @@ function App() {
   }
 
   function upVote(id) {
-    const requestBody = { vote_direction: 'up' };
+    const requestBodyUp = { vote_direction: 'up' };
 
     fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`, {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify(requestBodyUp)
     })
     .then(response => response.json())
-    .then(movie => {
-      setMovies(movies => movies.map((m) => {
-        if (m.id === id) {
-          return {...m, vote_count: m.vote_count + 1}
+    .then(data => {
+      setMovies(movies => movies.map((movie) => {
+        if (movie.id === id) {
+          return {...movie, vote_count: data.vote_count }
         }
-        return m
+        return movie
       }))
-      return movie
     })
     .catch(error => console.log('error message: ', error.message))
   }
   
   function downVote(id) {
-    setMovies(movies => movies.map((movie) => { 
-      if (movie.id === id) {
-        return {...movie, vote_count: movie.vote_count - 1}
-      }
-      return movie
-    }))
+    const requestBodyDown = { vote_direction: 'down' };
+
+    fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBodyDown)
+    })
+    .then(response => response.json())
+    .then(data => {
+      setMovies(movies => movies.map((movie) => { 
+        if (movie.id === id) {
+          return {...movie, vote_count: data.vote_count }
+        }
+        return movie
+      }))
+    })
+    .catch(error => console.log('error message: ', error.message))
   }
 
   if (clickedMovie) {
