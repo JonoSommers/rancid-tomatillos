@@ -23,8 +23,14 @@ function App() {
     getMovies();
   }, [])
 
-  const handleClick = () => {
-    setClickedMovie(movies)
+  function handleClick(id) {
+    fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log('data: ', data)
+      setClickedMovie(data)
+    })
+    .catch(error => console.log('error message: ', error.message))
   }
 
   function upVote(id) {
