@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center; 
-  margin: 0px 100px;
+  margin: 200px 200px;
 }
 
 .MovieDetails img {
@@ -14,6 +14,7 @@
   height: 70%;
   align-items: center;
   border-radius: 20px 20px 0px 0px;
+  margin-top: -170px;
 }
 
 .MovieDetails h1 {
@@ -41,4 +42,5 @@
   font-size: 20px;
   padding: 15px;
   margin: 0;
+  color: black;
 }
