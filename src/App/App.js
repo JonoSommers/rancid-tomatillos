@@ -32,8 +32,17 @@ function App() {
     .catch(error => console.log('error message: ', error.message))
   }
 
-  function upVote(id) {
-    const requestBodyUp = { vote_direction: 'up' };
+  function changeVoteCountValue(id, targetedMovie) {
+    setMovies(movies => movies.map((movie) => {
+      if (movie.id === id) {
+        return {...movie, vote_count: targetedMovie.vote_count }
+      }
+      return movie
+    }))
+  }
+
+  function updateVote(id, direction) {
+    const requestBodyUp = { vote_direction: direction };
 
     fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`, {
       method: 'PATCH',
@@ -44,34 +53,7 @@ function App() {
     })
     .then(response => response.json())
     .then(data => {
-      setMovies(movies => movies.map((movie) => {
-        if (movie.id === id) {
-          return {...movie, vote_count: data.vote_count }
-        }
-        return movie
-      }))
-    })
-    .catch(error => console.log('error message: ', error.message))
-  }
-  
-  function downVote(id) {
-    const requestBodyDown = { vote_direction: 'down' };
-
-    fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(requestBodyDown)
-    })
-    .then(response => response.json())
-    .then(data => {
-      setMovies(movies => movies.map((movie) => { 
-        if (movie.id === id) {
-          return {...movie, vote_count: data.vote_count }
-        }
-        return movie
-      }))
+      changeVoteCountValue(id, data)
     })
     .catch(error => console.log('error message: ', error.message))
   }
@@ -92,7 +74,7 @@ function App() {
         <header>
           <h1>Rancid Tomatillos</h1>
         </header>
-        <MoviesContainer movies = { movies } onClick={ handleClick } upVote={ upVote } downVote={ downVote } />
+        <MoviesContainer movies = { movies } onClick={ handleClick } updateVote={ updateVote }  />
       </main>
     );
   }
