@@ -5,7 +5,6 @@ import homeIcon from '../icons/home.png';
 import MoviesContainer from '../MoviesContainer/MoviesContainer.js';
 import MovieDetails from '../MovieDetails/MovieDetails.js';
 
-
 function App() {
   const [movies, setMovies] = useState([]);
   const [clickedMovie, setClickedMovie] = useState(false);
