@@ -53,6 +53,7 @@ function App() {
     })
     .then(response => response.json())
     .then(data => {
+      console.log('data: ', data)
       changeVoteCountValue(id, data)
     })
     .catch(error => console.log('error message: ', error.message))

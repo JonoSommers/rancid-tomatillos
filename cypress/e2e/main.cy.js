@@ -19,10 +19,10 @@ describe('Main Page', () => {
     it('displays movies on page load', () => {
         cy.get('.MoviesContainer > section').should('have.length', 4)
         cy.get('.MoviesContainer > section').first().find('img').should('be.visible')
-        cy.get('.MoviesContainer > section').first().find('p').contains(posters[0].vote_count.toString())
+        cy.get('.MoviesContainer > section').first().find('p').contains(posters[0].vote_count)
         cy.get('.MoviesContainer > section').first().find('p').get('button').contains('⬆️')
         cy.get('.MoviesContainer > section').last().find('img').should('be.visible')
-        cy.get('.MoviesContainer > section').last().find('p').contains(posters[3].vote_count.toString())
+        cy.get('.MoviesContainer > section').last().find('p').contains(posters[3].vote_count)
         cy.get('.MoviesContainer > section').last().find('p').get('button').contains('⬇️')
     })
 })
