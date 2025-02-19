@@ -1,6 +1,8 @@
 import './MovieDetails.css';
+import { useParams} from 'react-router-dom';
 
-function MovieDetails({ movie }) {
+function MovieDetails() {
+  const movie = useParams().movieId
   return (
     <section className='MovieDetails'>
       <img src= { movie.backdrop_path } alt={ movie.title } poster/>
