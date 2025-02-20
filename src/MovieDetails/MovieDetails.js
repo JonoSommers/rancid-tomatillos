@@ -1,20 +1,33 @@
+import { useParams, Link } from 'react-router-dom';
 import './MovieDetails.css';
-import { useParams} from 'react-router-dom';
 
-function MovieDetails() {
-  const movie = useParams().movieId
+function MovieDetails({ clickedMovie }) {
+  const clickedMovieId = useParams().movieId
+  console.log('movie id: ', clickedMovieId)
+  const movieDetails = movies.map(movie => {
+    const { backdrop_path, title, genre_ids, overview } = movie
+
+    return (
+      <Link to={`/${clickedMovieId}`}>
+        <section className='MovieDetails'>
+          <img src= { backdrop_path } alt={ title } poster/>
+          <h1>{ title }</h1>
+          <div className="genres">
+            {genre_ids.map((genre, index) => (
+              <h2 key={index}>{ genre }</h2>
+          ))}
+          </div>
+          <p>{ overview } </p>
+        </section>
+      </Link>
+    );
+  })
+
   return (
-    <section className='MovieDetails'>
-      <img src= { movie.backdrop_path } alt={ movie.title } poster/>
-      <h1>{ movie.title }</h1>
-      <div className="genres">
-        {movie.genre_ids.map((genre, index) => (
-          <h2 key={index}>{ genre }</h2>
-      ))}
-      </div>
-      <p>{ movie.overview } </p>
-    </section>
-  );
+    <>
+    {movieDetails}
+    </>
+  )
 }
 
 export default MovieDetails;
