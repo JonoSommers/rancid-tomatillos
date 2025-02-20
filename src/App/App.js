@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route, NavLink, useLocation  } from 'react-router-dom';
 import './App.css';
-// import searchIcon from '../icons/search.png';
 import homeIcon from '../icons/home.png';
 import MoviesContainer from '../MoviesContainer/MoviesContainer.js';
 import MovieDetails from '../MovieDetails/MovieDetails.js';
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [clickedMovie, setClickedMovie] = useState(false);
+  const location = useLocation(); 
 
   function getMovies() {
     fetch("https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies")
@@ -21,15 +21,6 @@ function App() {
   useEffect(() => {
     getMovies();
   }, [])
-
-  function handleClick(id) {
-    fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`)
-    .then(response => response.json())
-    .then(data => {
-      setClickedMovie(data)
-    })
-    .catch(error => console.log('error message: ', error.message))
-  }
 
   function changeVoteCountValue(id, targetedMovie) {
     setMovies(movies => movies.map((movie) => {
@@ -52,32 +43,27 @@ function App() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('data: ', data)
       changeVoteCountValue(id, data)
     })
     .catch(error => console.log('error message: ', error.message))
   }
 
-  if (clickedMovie) {
-    return (
-      <main className='App'>
-        <header>
-          <h1>Rancid Tomatillos</h1>
-          <img className="homeIcon" src={homeIcon} alt="Back to home" onClick={ () => setClickedMovie(false) }></img>
-        </header>
-        <MovieDetails movie={clickedMovie} />
-      </main>
-    );
-  } else {
-    return (
-      <main className='App'>
-        <header>
-          <h1>Rancid Tomatillos</h1>
-        </header>
-        <MoviesContainer movies = { movies } onClick={ handleClick } updateVote={ updateVote }  />
-      </main>
-    );
-  }
+  return (
+    <main className='App'>
+      <header>
+        <h1>Rancid Tomatillos</h1>
+        {location.pathname.split('/').length === 2 && location.pathname !== '/' && (
+          <NavLink to="/">
+            <img className="homeIcon" src={homeIcon} alt="Back to Home" />
+          </NavLink>
+        )}
+      </header>
+      <Routes>
+        <Route path="/" element={<MoviesContainer movies={movies} updateVote={updateVote} />} />
+        <Route path="/:movieId" element={<MovieDetails  />} />
+      </Routes>
+    </main>
+  );
 }
 
 export default App;
