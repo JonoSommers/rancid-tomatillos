@@ -50,7 +50,7 @@ To install all the dependices required, run this command in the terminal: *npm i
 
 ### Functionality
 
-<video controls src="giphy.mp4" title=""></video>
+https://github.com/user-attachments/assets/28bf3ddd-a12c-4552-89c7-91c0d269b659
 
 Sad paths to cover:
 
