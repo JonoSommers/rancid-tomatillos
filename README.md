@@ -1,4 +1,4 @@
-# Viewing Party API
+# Rancid Tomatillo
 
 ## Project Summary
 
